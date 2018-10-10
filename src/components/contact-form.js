@@ -1,7 +1,7 @@
 import React from 'react';
 import {reduxForm, Field, SubmissionError, focus} from 'redux-form';
 import Input from './input';
-// import {required, nonEmpty, email} from '../validators';
+import {required, nonEmpty, isNumber} from '../validators';
 
 class ContactForm extends React.Component {
   render() {
@@ -14,7 +14,8 @@ class ContactForm extends React.Component {
           label='Tracking Number' 
           id='trackingNumber' 
           name='trackingNumber' 
-          type='text'/><br />
+          type='text'
+          validate={[required, nonEmpty, isNumber]} /><br />
 
         <label htmlFor='issue'>What is your issue?</label><br />
         <Field 
