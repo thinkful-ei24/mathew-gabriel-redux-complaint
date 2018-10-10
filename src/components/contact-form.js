@@ -7,11 +7,31 @@ import {sendComplaint} from '../actions';
 class ContactForm extends React.Component {
 
   render() {
+    let successMessage;
+        if (this.props.submitSucceeded) {
+            successMessage = (
+                <div className="message message-success">
+                    Message submitted successfully
+                </div>
+            );
+        }
+        let errorMessage;
+        // console.log(this.props.error)
+        // console.log(this.props)
+        if (this.props.error) {
+          console.log('in error')
+            errorMessage = (
+                <div className="message message-error">{this.props.error}</div>
+            );
+        }
+
     return (
       <form onSubmit={this.props.handleSubmit(values => 
         this.props.dispatch(sendComplaint(values))
         )}>
         <h1>Report a problem with your delivery</h1>
+        {successMessage}
+        {errorMessage}
         <Field 
           component={Input} 
           element='input' 
