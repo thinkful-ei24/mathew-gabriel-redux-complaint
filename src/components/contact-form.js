@@ -2,11 +2,15 @@ import React from 'react';
 import {reduxForm, Field, SubmissionError, focus} from 'redux-form';
 import Input from './input';
 import {required, nonEmpty, isNumber} from '../validators';
+import {sendComplaint} from '../actions';
 
 class ContactForm extends React.Component {
+
   render() {
     return (
-      <form>
+      <form onSubmit={this.props.handleSubmit(values => 
+        this.props.dispatch(sendComplaint(values))
+        )}>
         <h1>Report a problem with your delivery</h1>
         <Field 
           component={Input} 
@@ -29,9 +33,9 @@ class ContactForm extends React.Component {
               <option value='other'>Other (give details below)</option> 
         </Field>
         <br /><br />
-        <label htmlFor='moredetails'>Give more details (optional)</label><br />
+        <label htmlFor='details'>Give more details (optional)</label><br />
         <Field 
-          name='moredetails'
+          name='details'
           component='textarea' /><br />
         <button>Submit</button>
 
