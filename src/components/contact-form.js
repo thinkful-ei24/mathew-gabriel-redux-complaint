@@ -1,6 +1,6 @@
 import React from 'react';
 import {reduxForm, Field, SubmissionError, focus} from 'redux-form';
-// import Input from './input';
+import Input from './input';
 // import {required, nonEmpty, email} from '../validators';
 
 class ContactForm extends React.Component {
@@ -8,18 +8,30 @@ class ContactForm extends React.Component {
     return (
       <form>
         <h1>Report a problem with your delivery</h1>
-        <label htmlFor='trackingNumber'>Tracking Number</label><br />
-        <input name='trackingNumber' type='text'/><br />
+        <Field 
+          component={Input} 
+          element='input' 
+          label='Tracking Number' 
+          id='trackingNumber' 
+          name='trackingNumber' 
+          type='text'/><br />
+
         <label htmlFor='issue'>What is your issue?</label><br />
-        <select name='issue'>
-          <option>My delivery hasn't arrived</option>
-          <option>The wrong item was delivered</option>
-          <option>Part of my order was missing</option>
-          <option>Some of my order arrived missing</option>
-          <option>Other (give details below)</option>
-        </select><br />
+        <Field 
+          name="issue" 
+          component="select"> 
+            <option /> 
+              <option value='not-delivered'>My delivery hasn't arrived</option> 
+              <option value='wrong-item'>The wrong item was delivered</option> 
+              <option value='missing-part'>Some of my order arrived missing</option> 
+              <option value='damaged'>Some of my order arrived damaged</option> 
+              <option value='other'>Other (give details below)</option> 
+        </Field>
+        <br /><br />
         <label htmlFor='moredetails'>Give more details (optional)</label><br />
-        <textarea name='moredetails'></textarea><br />
+        <Field 
+          name='moredetails'
+          component='textarea' /><br />
         <button>Submit</button>
 
       </form>
